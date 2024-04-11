@@ -11,7 +11,7 @@
         </div>
         <div class="box"><dv-border-box-12>test</dv-border-box-12></div>
         <div class="box"><dv-border-box-12>asdf</dv-border-box-12></div>
-        <div class="box"><dv-border-box-12></dv-border-box-12></div>
+        <div class="box"><dv-border-box-12>a</dv-border-box-12></div>
 
         <div class="box"><dv-border-box-6></dv-border-box-6></div>
         <div class="box"><dv-border-box-6></dv-border-box-6></div>
