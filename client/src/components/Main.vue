@@ -1,8 +1,15 @@
 <!-- Header下整体的模块 -->
 <template>
     <div class="Main">
-        <div class="box"><dv-border-box-12></dv-border-box-12></div>
-        <div class="box"><dv-border-box-12></dv-border-box-12></div>
+        <!-- First Line Info -->
+        <div class="box">
+            <dv-border-box-12>
+                <div class="boxTitle">
+
+                </div>
+            </dv-border-box-12>
+        </div>
+        <div class="box"><dv-border-box-12>test</dv-border-box-12></div>
         <div class="box"><dv-border-box-12></dv-border-box-12></div>
         <div class="box"><dv-border-box-12></dv-border-box-12></div>
 
@@ -37,6 +44,9 @@ export default {
         .Main{
             flex-wrap: nowrap;
         }
+    }
+    .boxTitle{
+
     }
     .box{
 		width: 29rem;
