@@ -1,15 +1,15 @@
 <template>
     <div class="boxTitle">
-        <dv-decoration-1 class = "dv3" />
+        <dv-decoration-2 class = "dv3" />
         <div class="boxTitle">{{ boxTitle }}</div>
-        <dv-decoration-1 class = "dv3" />
+        <dv-decoration-2 class = "dv3" />
     </div>
 </template>
 
 <script>
 export default {
     props:{
-        boxTitle:String,
+        boxTitle: String,
         required: true
     }
 }
@@ -23,6 +23,7 @@ export default {
         font-size: medium;
         letter-spacing: .1rem;
         color: #01ffff;
+        /* background-color: bisque; */
     }
     .dv3{
         flex:1;

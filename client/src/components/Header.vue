@@ -68,7 +68,6 @@ export default {
         height: 90px;
         width: 100%;
         justify-content: center;
-        align-items: center;
         color: #01ffff;
         letter-spacing: 2rem;
     }
@@ -76,6 +75,11 @@ export default {
         .Title{
             font-size: small;
         }        
+    }
+    @media (max-width:900) {
+        .Title{
+            font-size:xx-small;
+        }
     }
     .currentTime{
         position: absolute;

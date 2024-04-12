@@ -21,6 +21,7 @@
   width: 100%;
   overflow-y: hidden;
   background-color: #0e2c47;
+  /* color: #42b983; */
 }
 
 nav {
