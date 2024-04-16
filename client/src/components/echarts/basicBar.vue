@@ -25,8 +25,9 @@ export default {
                     data: [120, 200, 150, 80],
                     type: 'bar',
                     itemStyle:{
-                        color: '#91CC75'
-                    }
+                        color: '#08e677'
+                    },
+                    barWidth:'30%'
                 }
             ]
         };

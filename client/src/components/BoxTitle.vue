@@ -23,6 +23,9 @@ export default {
         font-size: medium;
         letter-spacing: .1rem;
         color: #01ffff;
+        text-shadow: 
+            0 0 2px #046868,
+            0 0 5px #01ffea;
         /* background-color: bisque; */
     }
     .dv3{

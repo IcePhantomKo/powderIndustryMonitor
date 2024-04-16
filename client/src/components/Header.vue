@@ -68,8 +68,12 @@ export default {
         height: 90px;
         width: 100%;
         justify-content: center;
+        letter-spacing: 1.5rem;
         color: #01ffff;
-        letter-spacing: 2rem;
+        text-shadow: 
+            0 0 5px #05c2c2,
+            0 0 80px #01ffff,
+            0 0 85px #08dfdf;
     }
     @media (max-width:1400px) {
         .Title{
