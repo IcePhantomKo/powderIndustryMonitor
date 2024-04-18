@@ -29,14 +29,19 @@ const routes = [
         meta: [],
         children: [
             {
-                path: 'temp',
+                path: 'ioStoreMgt',
                 name:'出入库管理',
-                component: () => import ('../views/temp.vue')
+                component: () => import ('../views/storeMgt/ioStoreMgt.vue')
             },
             {
-                path: 'temp1',
+                path: 'accessoryTime',
                 name:'配件时限',
-                component: () => import('../views/temp1.vue')
+                component: () => import('../views/storeMgt/accessoryTime.vue')
+            },
+            {
+                path: 'accessoryMgt',
+                name:'配件管理',
+                component: () => import('../views/storeMgt/accessoryMgt.vue')
             }
         ]
     },

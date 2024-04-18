@@ -1,7 +1,9 @@
+<!-- 配件管理 -->
+
 <template>
     <div class="container">
         <h1 style="color: white;">
-            出入库管理页面
+            配件管理
         </h1>
     </div>
 </template>

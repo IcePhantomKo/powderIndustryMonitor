@@ -11,7 +11,6 @@
                     </div>
                     <dv-decoration-4 style="height: 80%; top: -5%;" />
                     <div class="boxRight">
-                        <!-- <el-progress type="circle" :percentage="25"></el-progress> -->
                         <dv-active-ring-chart :config="planAmount" style="width:100%;height:100%" />
                     </div>
                 </div>
@@ -233,7 +232,7 @@ export default {
         width: 100%;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        overflow-y: auto;
+        overflow-y: hidden;
     }
     .box{
 		width: 29rem;
