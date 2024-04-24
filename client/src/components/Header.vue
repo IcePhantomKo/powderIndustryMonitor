@@ -1,14 +1,23 @@
 <template>
-    <div id="header">
-        <img src="../assets/Header.svg">
-        <div class="Title">
+    <div class="container">
+        <div class="left">
+            <el-dropdown @command="handleCommand">
+                <span class="el-dropdown-link">
+                <i class="el-icon-s-unfold"></i>
+                <i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="managementSystem"><i class="el-icon-menu"></i>管理系统</el-dropdown-item>
+                <el-dropdown-item command="quitSystem"><i class="el-icon-turn-off"></i>退出</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+        </div>
+        <div class="middle">
             <h1>包装段设备分析看板</h1>
         </div>
-        <div class="currentTime">
-            <div id="timeRight">
-                <p>{{date}}</p>
-                <p>{{time}}</p>
-            </div>
+        <div class="right">
+            <p>{{date}}</p>
+            <p>{{time}}</p>
         </div>
     </div>
 </template>
@@ -39,9 +48,53 @@ export default {
             this.time = hh+':'+mf+':'+ss;
         },
 
-
         getCurrentTime:function(){
             setInterval(this.formatDate,1000);
+        },
+        // 下拉菜单
+        handleCommand(command) {
+            switch (command) {
+                // 跳转后台管理系统
+                case 'managementSystem':
+                this.$confirm('确认跳转至后台管理系统么?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$router.push('/manage');
+                    // this.$message({
+                    //   type: 'success',
+                    //   message: '跳转成功!'
+                    // });
+                }).catch(() => {
+                    this.$message({
+                    type: 'info',
+                    message: '跳转取消'
+                    });          
+                });
+                break;
+
+                // 退出
+                case 'quitSystem':
+                this.$confirm('确认退出系统么?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                    }).then(() => {
+                    this.$message({
+                        type: 'success',
+                        message: '退出成功!'
+                    });
+                    }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '退出取消'
+                    });          
+                    });
+                break;
+                default:
+                break;
+            }
         }
     },
     //主动触发事件
@@ -52,22 +105,29 @@ export default {
 </script>
 
 <style scoped>
-    #header{
-        display: flex;
-        height: 90px;
-        width: 100%;
+    .container{
+        display:flex;
+        height: 8vh;
+        width: 100vw;
+        background-color: #0e2c47;
+        background-image: url(../assets/Header.svg);
+        background-size: cover; 
+        background-position: center; /* 图片将居中显示 */
+        background-repeat: no-repeat; /* 图片不会重复 */
     }
-    #header img{
-        height: 100%;
-        width: 100%;
-    }
-
-    .Title {
-        position: absolute;
+    .left{
         display: flex;
-        height: 90px;
-        width: 100%;
+        flex: 0 0 10%;
+        justify-content: start;
+        align-items: center;
+        /* background-color: red; */
+    }
+    .middle {
+        display: flex;
+        flex: 1;
         justify-content: center;
+        align-items: center;
+        font-size: 20px;
         letter-spacing: 1.5rem;
         color: #01ffff;
         text-shadow: 
@@ -75,33 +135,44 @@ export default {
             0 0 80px #01ffff,
             0 0 85px #08dfdf;
     }
-    @media (max-width:1400px) {
-        .Title{
-            font-size: small;
-        }        
+    .right{
+        display: flex;
+        flex: 0 0 10%;
+        align-items: center;
+        margin-top: 1rem;
+        height: 4vh;
+        flex-direction: column; /* 垂直排列子元素 */
     }
-    @media (max-width:900) {
-        .Title{
-            font-size:xx-small;
+    .right p{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 50%;
+        margin: 0;
+        font-size: 20px;
+        color: #01ffff;
+    }
+    @media (min-width: 3840px) {
+        .middle{
+            font-size: 40px;
+            letter-spacing: 3rem;
+        }
+        .right p{
+            font-size: 40px;
         }
     }
-    .currentTime{
-        position: absolute;
-        width: 7rem;
-        right: 0;
-        top: 0;
-    }
-    #timeRight{
-        position: relative;
-        height: 90%;
-        width: 54%;
-        margin-top: -3%;
+    .el-dropdown-link {
+        cursor: pointer;
         color: #01ffff;
-        font-weight: bold;
-        text-align: center;
     }
-    #timeRight p{
-        margin-top: 20px;
-        line-height: .4em;
+    .el-icon-arrow-down {
+        font-size: 12px;
+    }
+    .demonstration {
+        display: block;
+        color: #8492a6;
+        font-size: 14px;
+        margin-bottom: 20px;
     }
 </style>

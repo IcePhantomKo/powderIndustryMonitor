@@ -20,7 +20,7 @@ export default {
         display: flex;
         justify-content: space-evenly;
         white-space: nowrap;
-        font-size: medium;
+        font-size: 15px;
         letter-spacing: .1rem;
         color: #01ffff;
         text-shadow: 
@@ -32,5 +32,10 @@ export default {
         flex:1;
         width:10px;
         height: 20px;
+    }
+    @media (min-width: 3840px) {
+        .boxTitle{
+            font-size: 30px;
+        }
     }
 </style>

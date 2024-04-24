@@ -98,15 +98,17 @@
             <div class="boxContent"><basicBar></basicBar></div>
         </dv-border-box-7></div>
 
+        <!-- 实时报警 -->
         <div class="box">
             <dv-border-box-7>
                 <BoxTitle boxTitle="当前产线实时报警提醒"></BoxTitle>
                 <div class="boxContent">
-                    <dv-scroll-board :config="boardConfig" style="width:96%;height:85%; margin-top: -1rem" />
+                    <dv-scroll-board :config="boardConfig" style="width:96%;height:85%; margin-top: -1rem;" />
                 </div>
             </dv-border-box-7>
         </div>
         
+        <!-- 其余数据 -->
         <div class="box">
             <dv-border-box-7>
                 <BoxTitle boxTitle="其余数据"></BoxTitle>
@@ -233,11 +235,8 @@ export default {
         flex-wrap: wrap;
         justify-content: space-evenly;
         overflow-y: hidden;
+        margin-top: 2rem;
     }
-    .box{
-		width: 29rem;
-		height: 13rem;
-	}
     .boxContent{
         display: flex;
         flex: 1;
@@ -291,36 +290,57 @@ export default {
         font-weight: bold;
         margin-left: 1rem;
     }
-    /* 前四个 */
+    /* 1-4 */
     .box:nth-child(-n+4){
         margin-top: 2%;
+        width: 24vw;
+        height: 20vh;
     }
     /* 5-8 */
     .box:nth-child(n+5):nth-child(-n+8){
-        height: 20rem;
+        height: 30vh;
     }
-    .box:nth-child(5){
-        width: 25rem;
-    }
-    .box:nth-child(6){
-        width: 33rem;
-    }
-    .box:nth-child(7){
-        width: 33rem;
-    }
-    .box:nth-child(8){
-        width: 25rem;
-    }
-    /* 9-12 */
+        /* 9-12 */
     .box:nth-child(n+9):nth-child(-n+12){
-        height: 20rem;
+        height: 25vh;
         margin-bottom: 5%;
     }
+    .box:nth-child(5){
+        width: 23vw;
+    }
+    .box:nth-child(6){
+        width: 25vw;
+    }
+    .box:nth-child(7){
+        width: 25vw;
+    }
+    .box:nth-child(8){
+        width: 23vw;
+    }
+    .box:nth-child(9){
+        width: 20vw;
+    }
+    /* 实时报警 */
     .box:nth-child(10){
-        width: 40rem;
+        width: 40vw;
+    }
+    @media (min-width:3840px){
+        .boxLeft, .boxRight p{
+            font-size: 70px;
+        }
+        .box:nth-child(10){
+            font-size: 40px;
+        }
+        /* 其余数据 */
+        .box:nth-child(11) p{
+            font-size: 40px;
+        }
     }
     .box:nth-child(11){
-        width: 18rem;   
+        width: 16vw;   
+    }
+    .box:nth-child(12){
+        width: 20vw;
     }
 
     #test{

@@ -12,10 +12,16 @@ export default {
     
     mounted() {
         var myChart = this.$echarts.init(document.getElementById(this.elId));
+        var screenWidth = window.innerWidth;
+        var fontSize = `${screenWidth / 1920 * 12}px`
+
         var option = {
             xAxis: {
                 type: 'category',
-                data: ['xxx', 'yyy', 'zzz', 'kkk', 'jjj']
+                data: ['xxx', 'yyy', 'zzz', 'kkk', 'jjj'],
+                axisLabel: {
+                    fontSize: fontSize,
+                }
             },
             yAxis: {
                 type: 'value'
@@ -23,36 +29,11 @@ export default {
             series: [
                 {
                 data: [
-                    {
-                        value: 200,
-                        itemStyle: {
-                            color: '#5b9bd5',
-                        }
-                    },
-                    {
-                        value:100,
-                        itemStyle:{
-                            color:'#ED7D31'
-                        }
-                    },
-                    {
-                        value:300,
-                        itemStyle:{
-                            color:'#A5A5A5'
-                        }
-                    },
-                    {
-                        value:120,
-                        itemStyle:{
-                            color:'#109A88'
-                        }
-                    },
-                    {
-                        value:180,
-                        itemStyle:{
-                            color:'#B77BF0'
-                        }
-                    },
+                    {value: 200,itemStyle: {color: '#5b9bd5'}},
+                    {value:100,itemStyle:{color:'#ED7D31'}},
+                    {value:300,itemStyle:{color:'#A5A5A5'}},
+                    {value:120,itemStyle:{color:'#109A88'}},
+                    {value:180,itemStyle:{color:'#B77BF0'}},
                 ],
                 type: 'bar',
                 barWidth:'30%'

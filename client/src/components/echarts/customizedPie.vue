@@ -12,19 +12,13 @@ export default {
     
     mounted() {
         var myChart = this.$echarts.init(document.getElementById(this.elId));
+        var screenWidth = window.innerWidth;
+        var fontSize = `${screenWidth / 1920 * 12}px`
+
         var option = {
-            // title: {
-            //     text: 'Referer of a Website',
-            //     subtext: 'Fake Data',
-            //     left: 'center'
-            // },
             tooltip: {
                 trigger: 'item'
             },
-            // legend: {
-            //     orient: 'vertical',
-            //     left: 'left'
-            // },
             series: [
                 {
                     // name: 'Access From',
@@ -37,11 +31,14 @@ export default {
                         { value: 484, name: '色选异常' },
                         { value: 300, name: '切料异常' }
                     ],
+                    label:{
+                        fontSize: fontSize
+                    },
                     emphasis: {
                         itemStyle: {
-                            shadowBlur: 30,
+                            shadowBlur: 0,
                             shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            shadowColor: 'rgba(0, 0, 0)'
                         }
                     },
                     itemStyle:{

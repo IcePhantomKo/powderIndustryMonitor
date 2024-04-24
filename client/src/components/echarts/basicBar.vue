@@ -12,10 +12,16 @@ export default {
     
     mounted() {
         var myChart = this.$echarts.init(document.getElementById(this.elId));
+        var screenWidth = window.innerWidth;
+        var fontSize = `${screenWidth / 1920 * 12}px`;
+
         var option = {
             xAxis: {
                 type: 'category',
-                data: ['Q1', 'Q2', 'Q3', 'Q4']
+                data: ['Q1', 'Q2', 'Q3', 'Q4'],
+                axisLabel: {
+                    fontSize: fontSize,
+                }
             },
             yAxis: {
                 type: 'value'
@@ -25,7 +31,7 @@ export default {
                     data: [120, 200, 150, 80],
                     type: 'bar',
                     itemStyle:{
-                        color: '#08e677'
+                        color: '#08e677',
                     },
                     barWidth:'30%'
                 }
@@ -33,7 +39,6 @@ export default {
         };
 
         option && myChart.setOption(option);
-
     },
 }
 </script>
@@ -48,4 +53,5 @@ export default {
         height: 100%;
         /* background-color: rebeccapurple; */
     }
+
 </style>

@@ -20,7 +20,7 @@ VueRouter.prototype.replace = function replace(location) {
 
 const routes = [
     {
-        path: '/',
+        path: '/home',
         component: HomeView
     }, {
         path: '/manage',
