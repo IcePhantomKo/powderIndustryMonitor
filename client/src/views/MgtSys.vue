@@ -161,17 +161,7 @@
                     <el-header>
                         <!-- 标签页 -->
                         <div class="left-panel">
-                            <h1>博一后台管理系统</h1>
-                            <!-- <el-tabs :scrollbar="true" v-model="editableTabsValue" type="border-card" 
-                                closable @tab-remove="removeTab">
-                                <el-tab-pane
-                                    v-for="(item, index) in editableTabs"
-                                    :key="item.name"
-                                    :label="item.title"
-                                    :name="item.name"
-                                >
-                                </el-tab-pane>
-                            </el-tabs> -->
+                            <h1>昆山博一后台管理系统</h1>
                         </div>
                         <div class="right-panel">
                             <el-avatar :size="30" :src="circleUrl"></el-avatar>
@@ -188,10 +178,10 @@
                             </el-dropdown>
 
 
-                            <el-badge :value= 12 class="item">
+                            <el-badge :value= 13 class="item">
                                 <i class="el-icon-message-solid"></i>
                             </el-badge>
-                            <i class="el-icon-switch-button"></i>
+                            <i class="el-icon-switch-button" @click="quitManage()"></i>
                         </div>
                     </el-header>
 
