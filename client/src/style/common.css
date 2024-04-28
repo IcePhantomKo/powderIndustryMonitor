@@ -1,5 +1,12 @@
-.container{
-    display:flex;
-    height: 94%;
-    background-color: rebeccapurple;
+.subContainer{
+    margin-top: 1.5vh;
+    width: 99%;
+    height: 89vh;
+    overflow: hidden;
+    background-color: #D3DCE6;
+}
+
+
+#test{
+    color: #000000;
 }

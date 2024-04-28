@@ -1,22 +1,18 @@
 <template>
     <div class="container">
         <el-container>
-
             <!-- 左侧导航栏 -->
-            <el-aside width="250px">
+            <el-aside width="11vw">
                 <div class="side-container">
                     <el-col :span="12">
                         <el-menu
-                            style="width: 250px;
-                            /* padding: 50px 0px; */
-                            "
+                            style="width: 11vw;"
                             default-active="1"
                             class="el-menu-vertical-demo"
                             @open="handleOpen"
                             @close="handleClose"
                             @select="handleSelect"
-                            background-color="#545c64"
-                            text-color="#fff"
+                            text-color="#000000"
                             active-text-color="#ffd04b">
 
                             <!-- 仓储管理 -->
@@ -31,27 +27,27 @@
                                     <i class="el-icon-truck"></i>
                                     <span>仓储管理</span>
                                 </template>
-                                <el-menu-item index="ioStoreMgt">出/入库管理</el-menu-item>
+                                <el-menu-item index="ioStoreMgt">出 / 入库管理</el-menu-item>
                                 <el-menu-item index="accessoryTime">配件时限</el-menu-item>
                                 <el-menu-item index="accessoryMgt">配件管理</el-menu-item>
                             </el-submenu>
 
                             <!-- 设备数据采集 -->
-                            <el-submenu index="2" disabled>
+                            <el-submenu index="设备数据采集">
                                 <template slot="title">
                                     <i class="el-icon-data-line"></i>
-                                    <span>设备数据采集</span>
+                                    <span>设备数据</span>
                                 </template>
-                                <el-menu-item index = '2-1'>生产设备实时状态</el-menu-item>
-                                <el-menu-item index = '2-2'>伺服电机状态监视</el-menu-item>
-                                <el-menu-item index = '2-3'>设备运行时间</el-menu-item>
-                                <el-menu-item index = '2-4'>实时产量、良品数</el-menu-item>
-                                <el-menu-item index = '2-5'>视觉设备检测数据</el-menu-item>
-                                <el-menu-item index = '2-6'>传感器数据采集</el-menu-item>
+                                <el-menu-item index = 'productDev'>生产设备实时状态</el-menu-item>
+                                <el-menu-item index = '2-2' disabled>伺服电机状态监视</el-menu-item>
+                                <el-menu-item index = 'dvcRunTime'>设备运行时间</el-menu-item>
+                                <el-menu-item index = '2-4' disabled>实时产量、良品数</el-menu-item>
+                                <el-menu-item index = '2-5' disabled>视觉设备检测数据</el-menu-item>
+                                <el-menu-item index = '2-6' disabled>传感器数据采集</el-menu-item>
                             </el-submenu>
 
                             <!-- 班组管理 -->
-                            <el-submenu index = '3' disabled>
+                            <el-submenu index = '3'>
                                 <template slot="title">
                                     <i class="el-icon-notebook-1"></i>
                                     <span>班组管理</span>
@@ -159,26 +155,54 @@
                 </div>
             </el-aside>
 
-            <!-- 顶部内容 -->
+            <!-- 右侧内容 -->
             <el-main>
-                <div class="top-bar">
-                    <!-- 面包屑 -->
-                    <el-breadcrumb separator-class="el-icon-arrow-right">
-                        <el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>
-                        <el-breadcrumb-item>{{ breadcrumb.items[1].name }}</el-breadcrumb-item>
-                        <el-breadcrumb-item>{{ breadcrumb.items[2].name }}</el-breadcrumb-item>
-                    </el-breadcrumb>
+                <el-container>
+                    <el-header>
+                        <!-- 标签页 -->
+                        <div class="left-panel">
+                            <h1>博一后台管理系统</h1>
+                            <!-- <el-tabs :scrollbar="true" v-model="editableTabsValue" type="border-card" 
+                                closable @tab-remove="removeTab">
+                                <el-tab-pane
+                                    v-for="(item, index) in editableTabs"
+                                    :key="item.name"
+                                    :label="item.title"
+                                    :name="item.name"
+                                >
+                                </el-tab-pane>
+                            </el-tabs> -->
+                        </div>
+                        <div class="right-panel">
+                            <el-avatar :size="30" :src="circleUrl"></el-avatar>
+                            <!-- 管理员下拉菜单 -->
+                            <el-dropdown>
+                                <span class="el-dropdown-link">
+                                    管理员
+                                    <i class="el-icon-arrow-down el-icon--right"></i>
+                                </span>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item>管理员</el-dropdown-item>
+                                    <el-dropdown-item>员工</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </el-dropdown>
 
-                    <div class="right-panel">
-                        <el-avatar :size="40" :src="circleUrl"></el-avatar>
-                        <el-button type="text">设置</el-button>
-                        <el-button type="text" @click = 'quitManage()' >退出</el-button>
-                    </div>
-                </div>
-                <!-- 主页部分 -->
-                <keep-alive>
-                    <router-view></router-view>
-                </keep-alive>
+
+                            <el-badge :value= 12 class="item">
+                                <i class="el-icon-message-solid"></i>
+                            </el-badge>
+                            <i class="el-icon-switch-button"></i>
+                        </div>
+                    </el-header>
+
+                    <el-main>
+                        <!-- 主页部分 -->
+                        <keep-alive>
+                            <router-view></router-view>
+                        </keep-alive>
+                    </el-main>
+                    
+                </el-container>
             </el-main>
         </el-container>
     </div>
@@ -191,25 +215,9 @@ export default {
     components:{
         SysHeader,
     },
-    watch:{
-        $route:{
-            handler(newRoute,oldRoute){
-                this.updateBreadcrumb(newRoute);
-            },
-            immediate:true
-        }
-    },
     methods:{
-        updateBreadcrumb(route){
-            this.breadcrumb.items = [
-                { name: '首页', path: '/' },
-                { name: this.key, path: '/product-management' },
-                { name: this.$route.name, path: '/category-management' }
-                // ... 根据路由路径动态设置面包屑内容
-            ];
-        },
         handleOpen(key, keyPath) {
-            this.key = key;
+            // this.key = key;
         },
         handleClose(key, keyPath) {
             // console.log(key, keyPath);
@@ -241,72 +249,117 @@ export default {
           });
         }
     },
+    watch:{
+        // $route:{
+        //     handler(newRoute, oldRoute) {
+        //         this.menuData = this.$route.name;
+        //     },
+        //     immediate:true
+        // }
+    },
     data() {
         return {
-            circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
-            breadcrumb: {
-                items: []
-            },
-            // 左侧导航中的index
-            key:'',
-            name: '',
+            circleUrl: "https://img0.baidu.com/it/u=1407274981,1495574449&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500",
+            // 标签页
         }
     },
 }
 </script>
 
 <style scoped>
-    .container{
-        display:flex;
+    .container {
+        display: flex;
+        height: 100vh;
+    }
+    .el-container {
         height: 100%;
     }
-    .el-container{
-        height: 100%;
+    .el-header {
+        background-image: linear-gradient(to right, #3c68ff,white);
+        /* background-color: #3c68ff; */
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
     }
-  .el-header{
-    background-color: #B3C0D1;
-    color: #333;
-  }
-  
-  .el-aside {
-    background-color: #545c64;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-  .top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    /* background-color: #1c69dd; */
-    height: 50px;
-}
 
+    .el-aside {
+        background-color: #ffffff;
+        color: #333;
+        text-align: center;
+        line-height: 100px;
+    }
+
+    .el-main {
+        display: flex;
+        justify-content: center;
+        background-color: #d9e8fe;
+        color: #333;
+        text-align: center;
+        padding: 0;
+        /* line-height: 1`60`px; */
+    }
+    .left-panel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+        color: white;
+        letter-spacing: 10px;
+        /* height: 100%; */
+        /* background-color: red; */
+    }
+    /* 左侧导航栏 */
+    .el-menu-item{
+        font-size: 15px;
+    }
+    .el-submenu span{
+        font-size: 15px;
+    }
+
+    
     .right-panel {
-    display: flex;
-    align-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 13%;
+        height: 100%;
+        padding-right: 1vw;
+        /* border: solid 1px black; */
+        /* background-color: #ff00007e; */
     }
 
     .right-panel .el-button {
-    margin-left: 10px;
+        margin-left: 10px;
     }
 
-    .side-container{
+    .side-container {
         display: flex;
         height: 100vh;
         text-align: left;
         overflow-x: hidden;
     }
 
-    .side-container > .el-col{
-        flex: 0 0 250px;
+    .side-container > .el-col {
+        flex: 0 0 10vw;
+    }
+
+    .el-dropdown-link {
+        cursor: pointer;
+        color: #409EFF;
+    }
+    .el-icon-arrow-down {
+        font-size: 12px;
+    }
+    /* @media (min-width:3840px) {
+            .el-menu-item{
+                font-size: 30px;
+            }
+        } */
+    /* 标签页样式 */
+    ::v-deep .el-tabs__item {
+        font-size: 8px;
+        font-weight: bold;
     }
 </style>

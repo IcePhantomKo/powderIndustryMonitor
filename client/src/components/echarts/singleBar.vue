@@ -13,7 +13,8 @@ export default {
     mounted() {
         var myChart = this.$echarts.init(document.getElementById(this.elId));
         var screenWidth = window.innerWidth;
-        var fontSize = `${screenWidth / 1920 * 12}px`
+        var ownSize = screenWidth/1920 *12;
+        var fontSize = `${ownSize}px`
 
         var option = {
             xAxis: {
@@ -28,18 +29,21 @@ export default {
             },
             series: [
                 {
-                data: [
-                    {value: 200,itemStyle: {color: '#5b9bd5'}},
-                    {value:100,itemStyle:{color:'#ED7D31'}},
-                    {value:300,itemStyle:{color:'#A5A5A5'}},
-                    {value:120,itemStyle:{color:'#109A88'}},
-                    {value:180,itemStyle:{color:'#B77BF0'}},
-                ],
-                type: 'bar',
-                barWidth:'30%'
+                    data: [
+                        {value:200,itemStyle:{color:'#5b9bd5'}},
+                        {value:100,itemStyle:{color:'#ED7D31'}},
+                        {value:300,itemStyle:{color:'#A5A5A5'}},
+                        {value:120,itemStyle:{color:'#109A88'}},
+                        {value:180,itemStyle:{color:'#B77BF0'}},
+                    ],
+                    type: 'bar',
+                    barWidth:'30%'
                 },
                 
-            ]
+            ],
+            grid:{
+                bottom:ownSize*5,
+            }
         };
 
         option && myChart.setOption(option);

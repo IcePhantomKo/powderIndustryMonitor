@@ -13,7 +13,8 @@ export default {
     mounted() {
         var myChart = this.$echarts.init(document.getElementById(this.elId));
         var screenWidth = window.innerWidth;
-        var fontSize = `${screenWidth / 1920 * 12}px`;
+        var ownSize = screenWidth/1920 *12;
+        var fontSize = `${ownSize}px`
 
         var option = {
             xAxis: {
@@ -35,7 +36,10 @@ export default {
                     },
                     barWidth:'30%'
                 }
-            ]
+            ],
+            grid:{
+                bottom: ownSize * 5,
+            }
         };
 
         option && myChart.setOption(option);

@@ -16,7 +16,6 @@
                 </div>
             </dv-border-box-7>
         </div>
-
         <div class="box">
             <dv-border-box-7>
                 <BoxTitle boxTitle="面块输入数量"></BoxTitle>
@@ -155,7 +154,7 @@ export default {
     mounted() {
         setInterval(() => {
             this.randomNum = Math.floor(Math.random() * 10000);
-        }, 1000);
+        }, 1000);        
     },
     beforeDestroy(){
         clearInterval(this.interval)
@@ -166,40 +165,28 @@ export default {
             // 今日计划产量
             planAmount:{
                 data:[
-                    {
-                        name:'已完成',
-                        value: 85
-                    },
-                    {
-                        name:'未完成',
-                        value: 15
-                    }
+                    {name:'已完成',value: 85},
+                    {name:'未完成',value: 15}
                 ],
-                lineWidth: 20,
+                lineWidth: (window.innerWidth)/1920*20,
                 radius: '60%',
                 activeRadius: '65%',
                 digitalFlopStyle: {
-                    fontSize: 20
+                    fontSize: (window.innerWidth)/1920*13
                 },
                 color:['#91CC75','#f17575']
             },
             // 不良产出产品
             unquilifiedAmount:{
                 data:[
-                    {
-                        name:'合格',
-                        value: 90
-                    },
-                    {
-                        name:'不合格',
-                        value: 10
-                    }
+                    {name:'合格',value: 90},
+                    {name:'不合格',value: 10}
                 ],
-                lineWidth: 20,
+                lineWidth: (window.innerWidth)/1920*20,
                 radius: '60%',
                 activeRadius: '65%',
                 digitalFlopStyle: {
-                    fontSize: 20
+                    fontSize: (window.innerWidth)/1920*13
                 },
                 color:['#91CC75','#f17575']
             },
@@ -219,7 +206,7 @@ export default {
                     ['2024年1月10日 14:21:01','右侧排面机140XL同步带使用周期超过设定期限1天']
                 ],
                 index: true,
-                columnWidth: [50,200,350],
+                columnWidth: [window.innerWidth*50,window.innerWidth*200,window.innerWidth*350],
                 align: ['center']
             }
         }
@@ -324,6 +311,12 @@ export default {
     .box:nth-child(10){
         width: 40vw;
     }
+    .box:nth-child(11){
+        width: 16vw;   
+    }
+    .box:nth-child(12){
+        width: 20vw;
+    }
     @media (min-width:3840px){
         .boxLeft, .boxRight p{
             font-size: 70px;
@@ -335,15 +328,8 @@ export default {
         .box:nth-child(11) p{
             font-size: 40px;
         }
-    }
-    .box:nth-child(11){
-        width: 16vw;   
-    }
-    .box:nth-child(12){
-        width: 20vw;
-    }
-
-    #test{
-        color: #08e677;
+        /deep/.dv-scroll-board .rows .row-item{
+            font-size: 30px !important;
+        }
     }
 </style>

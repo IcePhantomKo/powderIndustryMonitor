@@ -22,9 +22,10 @@ const routes = [
     {
         path: '/home',
         component: HomeView
-    }, {
+    }, 
+    {
         path: '/manage',
-        name: '',
+        name: 'mgtHome',
         component: Manage,
         meta: [],
         children: [
@@ -42,6 +43,16 @@ const routes = [
                 path: 'accessoryMgt',
                 name:'配件管理',
                 component: () => import('../views/storeMgt/accessoryMgt.vue')
+            },
+            {
+                path: 'productDev',
+                name:'生产设备实时状态',
+                component: () => import('../views/deviceData/productDev.vue')
+            },
+            {
+                path: 'dvcRunTime',
+                name:'生产运行时间',
+                component: () => import('../views/deviceData/dvcRunTime.vue')
             }
         ]
     },
