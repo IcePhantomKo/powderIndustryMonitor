@@ -7,7 +7,7 @@
                     <el-col :span="12">
                         <el-menu
                             style="width: 11vw;"
-                            default-active="1"
+                            default-active="activeIndex"
                             class="el-menu-vertical-demo"
                             @open="handleOpen"
                             @close="handleClose"
@@ -15,14 +15,14 @@
                             text-color="#000000"
                             active-text-color="#ffd04b">
 
-                            <!-- 仓储管理 -->
-                            <el-menu-item index="home">
+                            <!-- 首页 -->
+                            <el-menu-item index="1">
                                 <i class="el-icon-s-home"></i>
                                 <span>首页</span>
                             </el-menu-item>
 
                             <!-- 仓储管理 -->
-                            <el-submenu index="仓储管理">
+                            <el-submenu index="2">
                                 <template slot="title">
                                     <i class="el-icon-truck"></i>
                                     <span>仓储管理</span>
@@ -33,7 +33,7 @@
                             </el-submenu>
 
                             <!-- 设备数据采集 -->
-                            <el-submenu index="设备数据采集">
+                            <el-submenu index="3">
                                 <template slot="title">
                                     <i class="el-icon-data-line"></i>
                                     <span>设备数据</span>
@@ -47,17 +47,17 @@
                             </el-submenu>
 
                             <!-- 班组管理 -->
-                            <el-submenu index = '3'>
+                            <el-submenu index = '4'>
                                 <template slot="title">
                                     <i class="el-icon-notebook-1"></i>
                                     <span>班组管理</span>
                                 </template>
-                                <el-menu-item index = '3-1'>人员管理</el-menu-item>
+                                <el-menu-item index = 'personMgt'>人员管理</el-menu-item>
                                 <el-menu-item index = '3-2'>排班计划</el-menu-item>
                             </el-submenu>
 
                             <!-- 综合图表 -->
-                            <el-submenu index = '4' disabled>
+                            <el-submenu index = '5' disabled>
                                 <template slot="title">
                                     <i class="el-icon-pie-chart"></i>
                                     <span>综合图表</span>
@@ -80,7 +80,7 @@
                             </el-submenu>
 
                             <!-- 可视化展示 -->
-                            <el-submenu index = '5' disabled>
+                            <el-submenu index = '6' disabled>
                                 <template slot="title">
                                     <i class="el-icon-s-platform"></i>
                                     <span>可视化展示</span>
@@ -92,7 +92,7 @@
                             </el-submenu>
 
                             <!-- 能耗管理 -->
-                            <el-submenu index = '6' disabled>
+                            <el-submenu index = '7' disabled>
                                 <template slot="title">
                                     <i class="el-icon-s-marketing"></i>
                                     <span>能耗管理</span>
@@ -104,7 +104,7 @@
                             </el-submenu>
 
                             <!-- 设备维护 -->
-                            <el-submenu index = '7' disabled>
+                            <el-submenu index = '8' disabled>
                                 <template slot="title">
                                     <i class="el-icon-cpu"></i>
                                     <span>设备维护</span>
@@ -117,7 +117,7 @@
                             </el-submenu>
 
                             <!-- 用户管理 -->
-                            <el-submenu index = '8' disabled>
+                            <el-submenu index = '9' disabled>
                                 <template slot="title">
                                     <i class="el-icon-user-solid"></i>
                                     <span>用户管理</span>
@@ -128,7 +128,7 @@
                             </el-submenu>
 
                             <!-- 报警管理 -->
-                            <el-submenu index = '9' disabled>
+                            <el-submenu index = '10' disabled>
                                 <template slot="title">
                                     <i class="el-icon-phone"></i>
                                     <span>报警管理</span>
@@ -140,7 +140,7 @@
                             </el-submenu>
 
                             <!-- 生产知识库 -->
-                            <el-submenu index = '10' disabled>
+                            <el-submenu index = '11' disabled>
                                 <template slot="title">
                                     <i class="el-icon-receiving"></i>
                                     <span>生产知识库</span>
@@ -164,7 +164,7 @@
                             <h1>昆山博一后台管理系统</h1>
                         </div>
                         <div class="right-panel">
-                            <el-avatar :size="30" :src="circleUrl"></el-avatar>
+                            <el-avatar :size="40" :src="circleUrl"></el-avatar>
                             <!-- 管理员下拉菜单 -->
                             <el-dropdown>
                                 <span class="el-dropdown-link">
@@ -177,11 +177,40 @@
                                 </el-dropdown-menu>
                             </el-dropdown>
 
+                            <!-- 报警列表 -->
+                            <el-tooltip class="item" effect="light" content="报警列表" placement="bottom">
+                                <el-badge :value= 4 class="alarmTable">
+                                    <i class="el-icon-message-solid" 
+                                    @click="drawer = true" type="primary" 
+                                    style="cursor: pointer; margin-left: 16px; font-size: 20px;"></i>
+                                    
+                                    <!-- 隐藏的报警列表 -->
+                                    <el-drawer
+                                    title="报警列表"
+                                    :visible.sync="drawer"
+                                    direction="rtl"
+                                    size="50%">
+                                        <el-table 
+                                        border
+                                        :data="gridData"
+                                        :default-sort = "{prop: 'alertTime', order: 'descending'}">
+                                            <el-table-column property="alertTime" label="时间" width="150" sortable></el-table-column>
+                                            <el-table-column property="alertType" label="种类" width="200"></el-table-column>
+                                            <el-table-column property="alertInfo" label="报警信息" width="300"></el-table-column>
+                                            <el-table-column property="alertEdit" label="操作">
+                                                <template slot-scope="scope">
+                                                    <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+                                                    <el-button type="text" size="small">编辑</el-button>
+                                                </template>
+                                            </el-table-column>
+                                        </el-table>
+                                    </el-drawer>
+                                </el-badge>
+                            </el-tooltip>
 
-                            <el-badge :value= 13 class="item">
-                                <i class="el-icon-message-solid"></i>
-                            </el-badge>
-                            <i class="el-icon-switch-button" @click="quitManage()"></i>
+                            <!-- 退出 -->
+                            <i class="el-icon-switch-button" @click="quitManage()" 
+                            style="cursor: pointer; font-size: 20px;"></i>
                         </div>
                     </el-header>
 
@@ -200,6 +229,7 @@
 
 <script>
 import SysHeader from '@/components/SysHeader.vue'
+import axios from 'axios'
 
 export default {
     components:{
@@ -207,7 +237,7 @@ export default {
     },
     methods:{
         handleOpen(key, keyPath) {
-            // this.key = key;
+            // alert(this.activeIndex)
         },
         handleClose(key, keyPath) {
             // console.log(key, keyPath);
@@ -218,6 +248,13 @@ export default {
             }else{
                 this.$router.push('/manage/'+ key);
             }
+        },
+        // 报警列表点击事件
+        handleClick(row) {
+            // console.log(row);
+            axios.get('/api/userinfo').then(result => {
+                console.log(result.data);
+            })
         },
         // 退出
         quitManage(){
@@ -250,7 +287,25 @@ export default {
     data() {
         return {
             circleUrl: "https://img0.baidu.com/it/u=1407274981,1495574449&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500",
-            // 标签页
+            // 报警列表
+            drawer: false,
+            gridData: [{
+                alertTime: '2016-05-02',
+                alertType: '火灾报警',
+                alertInfo: '储物室火灾报警'
+            }, {
+                alertTime: '2016-05-04',
+                alertType: '火灾报警',
+                alertInfo: '储物室火灾报警'
+            }, {
+                alertTime: '2016-05-01',
+                alertType: '火灾报警',
+                alertInfo: '储物室火灾报警'
+            }, {
+                alertTime: '2016-05-03',
+                alertType: '火灾报警',
+                alertInfo: '储物室火灾报警'
+            }],
         }
     },
 }
@@ -265,7 +320,7 @@ export default {
         height: 100%;
     }
     .el-header {
-        background-image: linear-gradient(to right, #3c68ff,white);
+        background-image: linear-gradient(to right, #051444,#dce1f1);
         /* background-color: #3c68ff; */
         color: #333;
         display: flex;
@@ -307,8 +362,6 @@ export default {
     .el-submenu span{
         font-size: 15px;
     }
-
-    
     .right-panel {
         display: flex;
         align-items: center;
@@ -337,19 +390,24 @@ export default {
 
     .el-dropdown-link {
         cursor: pointer;
-        color: #409EFF;
+        font-weight: bold;
+        color: #043464;
+    }
+    .el-dropdown-link:hover{
+        color: #ff5100;
     }
     .el-icon-arrow-down {
         font-size: 12px;
     }
-    /* @media (min-width:3840px) {
-            .el-menu-item{
-                font-size: 30px;
-            }
-        } */
-    /* 标签页样式 */
-    ::v-deep .el-tabs__item {
-        font-size: 8px;
-        font-weight: bold;
+    i.el-icon-message-solid:hover{
+        color: red;
+    }
+    i.el-icon-switch-button:hover{
+        color: red;
+    }
+    /* 报警列表 */
+    .alertTable{
+        display: flex;
+        justify-content: center;
     }
 </style>

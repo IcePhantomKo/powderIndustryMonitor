@@ -1,0 +1,9 @@
+{
+    id:'@id()', // 获得随机的id对象
+    username: '@cname()',   // 随机生成中文名字
+    date: '@date()',    // 随机生成日期
+    avatar: "@image('200*200','red','#fff','avatar')",  //  生成图片
+    description: '@paragraph()',    // 描述
+    ip:'@ip()', // ip 地址
+    email:'@email()'    //email
+}

@@ -53,6 +53,11 @@ const routes = [
                 path: 'dvcRunTime',
                 name:'生产运行时间',
                 component: () => import('../views/deviceData/dvcRunTime.vue')
+            },
+            {
+                path:'personMgt',
+                name:'人员管理',
+                component: () => import('../views/shiftMgt/personMgt.vue')
             }
         ]
     },
