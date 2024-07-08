@@ -13,14 +13,20 @@ function getJsonFile(filePath){
 // 返回一个函数
 module.exports = function(app){
     if(process.env.MOCK == 'true'){
-        // 监听http请求
-        app.app.get('/user/userinfo',function(rep,res){
-            var json = getJsonFile('./userInfo.json5');
+        app.app.get('/manage/riskMgt',function(rep,res){
+            var json = getJsonFile('./mockData/riskData.json5');
             // 将json传入Mock.mock方法中，生成的数据返回给浏览器
             res.json(Mock.mock(json));
         })
-        app.app.get('/manage/riskMgt',function(rep,res){
-            var json = getJsonFile('./mockData/riskData.json5');
+        // 产品统计
+        app.app.get('/manage/productionStat',function(rep,res){
+            var json = getJsonFile('./mockData/productionStat.json5');
+            // 将json传入Mock.mock方法中，生成的数据返回给浏览器
+            res.json(Mock.mock(json));
+        })
+        // 维护与保养
+        app.app.get('/manage/maintenance',function(rep,res){
+            var json = getJsonFile('./mockData/maintenance.json5');
             // 将json传入Mock.mock方法中，生成的数据返回给浏览器
             res.json(Mock.mock(json));
         })

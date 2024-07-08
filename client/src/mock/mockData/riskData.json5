@@ -1,9 +1,12 @@
 // 风险描述
 {
-    "column0|10": ['@csentence(5,10)'],         // 风险描述
-    "column1|10":['@number()'],             // 当前监视值
-    "column2|10":['@number()'],             // 预估概率
+    "column0|10": ['@cword(5,10)'],         // 风险描述
+    "column1|10":['@natural(1,100)'],       // 当前监视值
+    "column2|10":['@natural(1,100)'],       // 预估概率
     "column3|10": ['@string("★",1,3)'],    // 影响程度
-    "column4|10":['@cname'],
-    "column5|10": ['@string("★",1,3)']
+    "column4|10":['@string("★",1,3)'],     // 重视等级
+    "column5|10": ['@string("★",1,3)'],    // 风险应对方案
+    "column6|10": ['@cname'],               // 设备负责人
+    "column7|10": ['@cname'],               // 监督人
+    "column8|10": ['@cword(2,3)'],          // 状态  
 }

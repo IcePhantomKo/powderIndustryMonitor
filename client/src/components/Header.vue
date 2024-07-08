@@ -61,7 +61,7 @@ export default {
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$router.push('/manage');
+                    this.$router.push('/manage/productDev');
                     // this.$message({
                     //   type: 'success',
                     //   message: '跳转成功!'

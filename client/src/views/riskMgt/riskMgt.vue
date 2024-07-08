@@ -75,25 +75,27 @@ export default {
     },
     mounted() {
         axios.get('/manage/riskMgt').then(res =>{
-            console.log(res);
-            this.tableData[0].risk0 = res.data.column0[0];
+            console.log(res.data);
+            // this.tableData[0].risk0 = res.data.column0[0];
+            for(let i = 0; i < 10; i++){
+                this.tableData.push([]);
+                this.tableData[i].risk0 = res.data.column0[i];
+                this.tableData[i].risk1 = res.data.column1[i];
+                this.tableData[i].risk2 = res.data.column2[i];
+                this.tableData[i].risk3 = res.data.column3[i];
+                this.tableData[i].risk4 = res.data.column4[i];
+                this.tableData[i].risk5 = res.data.column5[i];
+                this.tableData[i].risk6 = res.data.column6[i];
+                this.tableData[i].risk7 = res.data.column7[i];
+                this.tableData[i].risk8 = res.data.column8[i];
+            }
         }).catch(err =>{
             console.log(err);
         })
     },
     data() {
         return {
-            tableData: [{
-                risk0: '1线2号分包投包机掉料300包',
-                risk1: '104包',
-                risk2: '30%',
-                risk3: '低风险',
-                risk4: '星星',
-                risk5: '停机时需检修',
-                risk6: '赵阳',
-                risk7: '李东',
-                risk8: '运行中'
-            }],
+            tableData: []
         }
     },
 }

@@ -21,7 +21,7 @@
                             active-text-color="#ffd04b">
 
                             <!-- 首页 -->
-                            <el-menu-item>
+                            <el-menu-item disabled>
                                 <template slot="title">
                                     <i class="el-icon-s-home"></i>
                                     <span>首页</span>
@@ -29,7 +29,7 @@
                             </el-menu-item>
 
                             <!-- 仓储管理 -->
-                            <el-submenu index="2">
+                            <el-submenu index="2" disabled>
                                 <template slot="title">
                                     <i class="el-icon-truck"></i>
                                     <span>仓储管理</span>
@@ -47,14 +47,14 @@
                                 </template>
                                 <el-menu-item index = 'productDev'>总览</el-menu-item>
                                 <el-menu-item index = '2-2' disabled>伺服电机状态监视</el-menu-item>
-                                <el-menu-item index = 'dvcRunTime'>设备运行时间</el-menu-item>
+                                <el-menu-item index = 'dvcRunTime' disabled>设备运行时间</el-menu-item>
                                 <el-menu-item index = '2-4' disabled>实时产量、良品数</el-menu-item>
                                 <el-menu-item index = '2-5' disabled>视觉设备检测数据</el-menu-item>
                                 <el-menu-item index = '2-6' disabled>传感器数据采集</el-menu-item>
                             </el-submenu>
 
                             <!-- 班组管理 -->
-                            <el-submenu index = '4'>
+                            <el-submenu index = '4' disabled>
                                 <template slot="title">
                                     <i class="el-icon-notebook-1"></i>
                                     <span>班组管理</span>

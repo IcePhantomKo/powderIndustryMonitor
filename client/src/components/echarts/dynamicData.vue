@@ -1,3 +1,4 @@
+<!-- 总览页 -->
 <template>
     <div :id="elId" class="container"></div>
 </template>
@@ -34,7 +35,7 @@ export default {
 
         var option = {
             title: {
-                text: 'Dynamic Data & Time Axis'
+                text: '生产状况'
             },
             tooltip: {
                 trigger: 'axis',

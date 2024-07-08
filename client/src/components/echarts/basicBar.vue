@@ -19,7 +19,7 @@ export default {
         var option = {
             xAxis: {
                 type: 'category',
-                data: ['Q1', 'Q2', 'Q3', 'Q4'],
+                data: ['总生产量', '总输入面饼数量', '包装不良数', '少料不良数','称重不良数','日期不良数'],
                 axisLabel: {
                     fontSize: fontSize,
                 }
@@ -29,7 +29,7 @@ export default {
             },
             series: [
                 {
-                    data: [120, 200, 350, 80],
+                    data: [220, 200, 30, 20, 12, 13, 14],
                     type: 'bar',
                     itemStyle:{
                         color: '#08e677',

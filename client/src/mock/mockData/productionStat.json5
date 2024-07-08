@@ -1,0 +1,12 @@
+// 产品统计
+{
+    "column0|10": ['@datetime()'],          // 班组
+    "column1|10": ['@cname'],               // 姓名
+    "column2|10": ['@natural(1,100)'],      // 总产出数量
+    "column3|10": ['@natural(1,100)'],      // 总输入面饼数量
+    "column4|10": ['@natural(1,100)'],      // 总产出数量
+    "column5|10": ['@natural(1,100)'],      // 包装不良数
+    "column6|10": ['@natural(1,100)'],      // 少料不良数
+    "column7|10": ['@natural(1,100)'],      // 称重不良数
+    "column8|10": ['@natural(1,100)'],      // 日期不良数
+}

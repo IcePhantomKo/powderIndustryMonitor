@@ -24,16 +24,16 @@
             <div class="containerRest">
                 <el-table :data="tableData" height="95%">
                     <el-table-column type="index" label="序号"></el-table-column>
-                    <el-table-column prop="maintenance0" label="任务内容"></el-table-column>
-                    <el-table-column prop="maintenance1" label="负责人"></el-table-column>
-                    <el-table-column prop="maintenance2" label="开始日期"></el-table-column>
-                    <el-table-column prop="maintenance3" label="结束日期"></el-table-column>
-                    <el-table-column prop="maintenance4" label="完成状态"></el-table-column>
-                    <el-table-column prop="maintenance5" label="重要程度"></el-table-column>
-                    <el-table-column prop="maintenance6" label="进行天数"></el-table-column>
-                    <el-table-column prop="maintenance7" label="剩余天数"></el-table-column>
-                    <el-table-column prop="maintenance8" label="更换进度"></el-table-column>
-                    <el-table-column prop="maintenance9" label="库存备件"></el-table-column>
+                    <el-table-column prop="data0" label="任务内容"></el-table-column>
+                    <el-table-column prop="data1" label="负责人"></el-table-column>
+                    <el-table-column prop="data2" label="开始日期"></el-table-column>
+                    <el-table-column prop="data3" label="结束日期"></el-table-column>
+                    <el-table-column prop="data4" label="完成状态"></el-table-column>
+                    <el-table-column prop="data5" label="重要程度"></el-table-column>
+                    <el-table-column prop="data6" label="进行天数"></el-table-column>
+                    <el-table-column prop="data7" label="剩余天数"></el-table-column>
+                    <el-table-column prop="data8" label="更换进度"></el-table-column>
+                    <el-table-column prop="data9" label="库存备件"></el-table-column>
                 </el-table>
             </div>
         </div>
@@ -41,7 +41,29 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+    mounted() {
+        axios.get('/manage/maintenance').then(res =>{
+            // console.log(res.data.column0.length);
+            for(let i = 0; i < res.data.column0.length; i++){
+                this.tableData.push([]);
+                this.tableData[i].data0 = res.data.column0[i];
+                this.tableData[i].data1 = res.data.column1[i];
+                this.tableData[i].data2 = res.data.column2[i];
+                this.tableData[i].data3 = res.data.column3[i];
+                this.tableData[i].data4 = res.data.column4[i];
+                this.tableData[i].data5 = res.data.column5[i];
+                this.tableData[i].data6 = res.data.column6[i];
+                this.tableData[i].data7 = res.data.column7[i];
+                this.tableData[i].data8 = res.data.column8[i];
+                this.tableData[i].data9 = res.data.column9[i];
+            }
+        }).catch(err => {
+            console.log(err);
+        })      
+    },
     data() {
         return {
             pickerOptions: {
@@ -76,18 +98,7 @@ export default {
             value1: '',
             value2: '',
 
-            tableData: [{
-                maintenance0: '包装机中封轴承',
-                maintenance1: '赵四',
-                maintenance2: '2024-02-09',
-                maintenance3: '2024-05-08',
-                maintenance4: '未开始',
-                maintenance5: '重要',
-                maintenance6:'89',
-                maintenance7: '30',
-                maintenance8: '未到期',
-                maintenance9: '有'
-            }],
+            tableData: [],
         }
     },
 }
