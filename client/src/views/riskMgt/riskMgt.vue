@@ -75,9 +75,9 @@ export default {
     },
     mounted() {
         axios.get('/manage/riskMgt').then(res =>{
-            console.log(res.data);
+            // console.log(res.data);
             // this.tableData[0].risk0 = res.data.column0[0];
-            for(let i = 0; i < 10; i++){
+            for(let i = 0; i < res.data.column0.length; i++){
                 this.tableData.push([]);
                 this.tableData[i].risk0 = res.data.column0[i];
                 this.tableData[i].risk1 = res.data.column1[i];

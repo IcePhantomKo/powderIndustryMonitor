@@ -1,13 +1,13 @@
 // 维护与保养
 {
-    "column0|20": ['@cword(5,7)'],         // 任务内容
-    "column1|20": ['@cname'],               // 负责人
-    "column2|20": ['@datetime()'],          // 开始日期
-    "column3|20": ['@datetime()'],          // 结束日期
-    "column4|20": ['@cword(2,3)'],         // 完成状态
-    "column5|20":['@string("★",1,3)'],     // 重要程度
-    "column6|20": ['@natural(1,100)'],      // 进行天数
-    "column7|20": ['@natural(1,100)'],      // 剩余天数
-    "column8|20": ['@cword(5,10)'],         // 更换进度
-    "column9|20": ['@cword(1,1)'],         // 库存备件
+    "column0|30": ['@cword(5,7)'],         // 任务内容
+    "column1|30": ['@cname'],               // 负责人
+    "column2|30": ['@datetime()'],          // 开始日期
+    "column3|30": ['@datetime()'],          // 结束日期
+    "column4|30": ['@cword(2,3)'],         // 完成状态
+    "column5|30":['@string("★",1,3)'],     // 重要程度
+    "column6|30": ['@natural(1,100)'],      // 进行天数
+    "column7|30": ['@natural(1,100)'],      // 剩余天数
+    "column8|30": ['@cword(5,10)'],         // 更换进度
+    "column9|30": ['@cword(1,3)'],         // 库存备件
 }
