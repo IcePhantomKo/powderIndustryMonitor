@@ -29,7 +29,7 @@ export default {
             },
             series: [
                 {
-                    data: [120, 200, 150, 80],
+                    data: [120, 200, 350, 80],
                     type: 'bar',
                     itemStyle:{
                         color: '#08e677',

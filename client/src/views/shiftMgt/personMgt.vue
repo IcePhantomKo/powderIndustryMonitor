@@ -63,6 +63,9 @@ export default {
 
 <style>
     @import url(../../style/common.css);
+</style>
+
+<style scoped>
     .subContainer{
         display: flex;
         justify-content: center;

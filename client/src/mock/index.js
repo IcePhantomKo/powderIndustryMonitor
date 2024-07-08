@@ -1,22 +1,28 @@
-const Mock = require('mockjs')
+const fs = require('fs');
+const path = require('path');
+const Mock = require('mockjs');
+const JSON5 = require('json5');
 
-let data = Mock.mock({
-    id:'@id()', // 获得随机的id对象
-    username: '@cname()',   // 随机生成中文名字
-    date: '@date(yyyy/MM/dd)',    // 随机生成日期
-    avatar: "@image('200*200','red','#fff','avatar')",  //  生成图片
-    description: '@paragraph()',    // 描述
-    ip:'@ip()', // ip 地址
-    email:'@email()'    //email
-})
+// 读取json文件
+function getJsonFile(filePath){
+    var json = fs.readFileSync(path.resolve(__dirname,filePath),'utf-8');
+    //解析并返回
+    return JSON5.parse(json);
+}
 
+// 返回一个函数
 module.exports = function(app){
     if(process.env.MOCK == 'true'){
-        // node express 框架
-        // 参数1: 接口地址; 参数2: 服务器处理函数
-        app.app.use('/api/userinfo', (req,res) => {
-            // 将模拟的数据转成json格式返回给浏览器
-            res.json(data)
+        // 监听http请求
+        app.app.get('/user/userinfo',function(rep,res){
+            var json = getJsonFile('./userInfo.json5');
+            // 将json传入Mock.mock方法中，生成的数据返回给浏览器
+            res.json(Mock.mock(json));
+        })
+        app.app.get('/manage/riskMgt',function(rep,res){
+            var json = getJsonFile('./mockData/riskData.json5');
+            // 将json传入Mock.mock方法中，生成的数据返回给浏览器
+            res.json(Mock.mock(json));
         })
     }
 }

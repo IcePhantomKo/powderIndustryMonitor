@@ -44,9 +44,10 @@ const routes = [
                 name:'配件管理',
                 component: () => import('../views/storeMgt/accessoryMgt.vue')
             },
+            // 设备数据
             {
                 path: 'productDev',
-                name:'生产设备实时状态',
+                name:'总览',
                 component: () => import('../views/deviceData/productDev.vue')
             },
             {
@@ -58,6 +59,23 @@ const routes = [
                 path:'personMgt',
                 name:'人员管理',
                 component: () => import('../views/shiftMgt/personMgt.vue')
+            },
+            // 综合图表
+            {
+                path:'productionStat',
+                name:'产量统计',
+                component: () => import('../views/generalChart/productionStat.vue')
+            },
+            {
+                path:'maintenance',
+                name:'维护与保养',
+                component:()=>import('../views/generalChart/maintenance.vue')
+            },
+            //风险管理
+            {
+                path:'riskMgt',
+                name:'风险管理',
+                component:() =>import('../views/riskMgt/riskMgt.vue')
             }
         ]
     },

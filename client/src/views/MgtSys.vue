@@ -1,3 +1,4 @@
+<!-- 后台管理总页面 -->
 <template>
     <div class="container">
         <el-container>
@@ -6,19 +7,25 @@
                 <div class="side-container">
                     <el-col :span="12">
                         <el-menu
-                            style="width: 11vw;"
+                            style="
+                                width: 11vw;
+                                background-color: #1f2325;
+                            "
                             default-active="activeIndex"
                             class="el-menu-vertical-demo"
                             @open="handleOpen"
                             @close="handleClose"
                             @select="handleSelect"
-                            text-color="#000000"
+                            text-color="#fff"
+                            background-color="#1f2325"
                             active-text-color="#ffd04b">
 
                             <!-- 首页 -->
-                            <el-menu-item index="1">
-                                <i class="el-icon-s-home"></i>
-                                <span>首页</span>
+                            <el-menu-item>
+                                <template slot="title">
+                                    <i class="el-icon-s-home"></i>
+                                    <span>首页</span>
+                                </template>
                             </el-menu-item>
 
                             <!-- 仓储管理 -->
@@ -38,7 +45,7 @@
                                     <i class="el-icon-data-line"></i>
                                     <span>设备数据</span>
                                 </template>
-                                <el-menu-item index = 'productDev'>生产设备实时状态</el-menu-item>
+                                <el-menu-item index = 'productDev'>总览</el-menu-item>
                                 <el-menu-item index = '2-2' disabled>伺服电机状态监视</el-menu-item>
                                 <el-menu-item index = 'dvcRunTime'>设备运行时间</el-menu-item>
                                 <el-menu-item index = '2-4' disabled>实时产量、良品数</el-menu-item>
@@ -57,27 +64,35 @@
                             </el-submenu>
 
                             <!-- 综合图表 -->
-                            <el-submenu index = '5' disabled>
+                            <el-submenu index = '5'>
                                 <template slot="title">
                                     <i class="el-icon-pie-chart"></i>
                                     <span>综合图表</span>
                                 </template>
                                 <el-menu-item-group>
                                     <template slot="title">分析</template>
-                                    <el-menu-item index="4-1">产量分析</el-menu-item>
-                                    <el-menu-item index="4-2">产出分析</el-menu-item>
-                                    <el-menu-item index="4-3">故障分析</el-menu-item>
+                                    <el-menu-item index="productionStat">产量统计</el-menu-item>
+                                    <el-menu-item index="maintenance">维护与保养</el-menu-item>
+                                    <el-menu-item index="4-3" disabled>故障分析</el-menu-item>
                                 </el-menu-item-group>
                                 <el-menu-item-group>
                                     <template slot="title">记录</template>
-                                    <el-menu-item index="4-4">开停机记录</el-menu-item>
-                                    <el-menu-item index="4-5">漏料率曲线图</el-menu-item>
-                                    <el-menu-item index="4-6">设备报警记录</el-menu-item>
-                                    <el-menu-item index="4-7">设备备件时限总览</el-menu-item>
-                                    <el-menu-item index="4-8">异常停机记录统计</el-menu-item>
-                                    <el-menu-item index="4-9">节拍报表</el-menu-item>
+                                    <el-menu-item index="4-4" disabled>开停机记录</el-menu-item>
+                                    <el-menu-item index="4-5" disabled>漏料率曲线图</el-menu-item>
+                                    <el-menu-item index="4-6" disabled>设备报警记录</el-menu-item>
+                                    <el-menu-item index="4-7" disabled>设备备件时限总览</el-menu-item>
+                                    <el-menu-item index="4-8" disabled>异常停机记录统计</el-menu-item>
+                                    <el-menu-item index="4-9" disabled>节拍报表</el-menu-item>
                                 </el-menu-item-group>
                             </el-submenu>
+
+                            <!-- 风险管理 -->
+                            <el-menu-item index = 'riskMgt'>
+                                <template slot="title">
+                                    <i class="el-icon-key"></i>
+                                    <span>风险管理</span>
+                                </template>
+                            </el-menu-item>
 
                             <!-- 可视化展示 -->
                             <el-submenu index = '6' disabled>
@@ -161,10 +176,10 @@
                     <el-header>
                         <!-- 标签页 -->
                         <div class="left-panel">
-                            <h1>昆山博一后台管理系统</h1>
+                            <img src="../assets/boyiLog.png" style="padding: 1vw">
+                            <!-- <h1>昆山博一后台管理系统</h1> -->
                         </div>
                         <div class="right-panel">
-                            <el-avatar :size="40" :src="circleUrl"></el-avatar>
                             <!-- 管理员下拉菜单 -->
                             <el-dropdown>
                                 <span class="el-dropdown-link">
@@ -243,15 +258,10 @@ export default {
             // console.log(key, keyPath);
         },
         handleSelect(key, keyPath) {
-            if(key === 'home'){
-                this.$router.push('/manage');
-            }else{
-                this.$router.push('/manage/'+ key);
-            }
+            key === 'home' ? this.$router.push('/manage') : this.$router.push('/manage/' + key);
         },
         // 报警列表点击事件
         handleClick(row) {
-            // console.log(row);
             axios.get('/api/userinfo').then(result => {
                 console.log(result.data);
             })
@@ -286,7 +296,6 @@ export default {
     },
     data() {
         return {
-            circleUrl: "https://img0.baidu.com/it/u=1407274981,1495574449&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500",
             // 报警列表
             drawer: false,
             gridData: [{
@@ -311,6 +320,10 @@ export default {
 }
 </script>
 
+<style>
+    @import url(../style/common.css);
+</style>
+
 <style scoped>
     .container {
         display: flex;
@@ -320,26 +333,21 @@ export default {
         height: 100%;
     }
     .el-header {
-        background-image: linear-gradient(to right, #051444,#dce1f1);
-        /* background-color: #3c68ff; */
+        /* background-image: linear-gradient(to top, #1475ad96,#dce1f1); */
+        /* background-color: #e0dfdf; */
         color: #333;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0;
+        border-bottom: 1px solid #c9cccc8a;;
     }
 
-    .el-aside {
-        background-color: #ffffff;
-        color: #333;
-        text-align: center;
-        line-height: 100px;
-    }
 
     .el-main {
         display: flex;
         justify-content: center;
-        background-color: #d9e8fe;
+        background-color: #ffffff;
         color: #333;
         text-align: center;
         padding: 0;
@@ -349,15 +357,15 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 20%;
-        color: white;
+        width: 30%;
+        color: rgb(19, 15, 15);
         letter-spacing: 10px;
-        /* height: 100%; */
         /* background-color: red; */
     }
     /* 左侧导航栏 */
     .el-menu-item{
         font-size: 15px;
+        background-color: #59a9d1;
     }
     .el-submenu span{
         font-size: 15px;
@@ -366,7 +374,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 13%;
+        width: 10%;
         height: 100%;
         padding-right: 1vw;
         /* border: solid 1px black; */
@@ -382,6 +390,7 @@ export default {
         height: 100vh;
         text-align: left;
         overflow-x: hidden;
+        background-color: #1f2325;
     }
 
     .side-container > .el-col {

@@ -12,6 +12,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
     @import url(../../style/common.css);
 </style>
